@@ -1,4 +1,4 @@
-###Hello there!
+### Hello there!
 
 This repo contains various exercises and tutorials I have done on my quest to learn about machine learning and ai.
 
