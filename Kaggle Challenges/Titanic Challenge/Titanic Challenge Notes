@@ -1,0 +1,4 @@
+The mapping for values in 'title' column is as following:
+{"Mr": 1, "Miss": 2, "Mrs": 3, "Master": 4, "Rare": 5}
+The mapping for values in 'sex' column is as following:
+{'female': 1, 'male': 0}

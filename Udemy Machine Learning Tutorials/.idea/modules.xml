@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../Hands On Machine Learning Exercises/.idea/Hands On Machine Learning Exercises.iml" filepath="$PROJECT_DIR$/../Hands On Machine Learning Exercises/.idea/Hands On Machine Learning Exercises.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Kaggle Challenges/.idea/Kaggle Challenges.iml" filepath="$PROJECT_DIR$/../Kaggle Challenges/.idea/Kaggle Challenges.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Miscellaneous Tutorials/.idea/Miscellaneous Tutorials.iml" filepath="$PROJECT_DIR$/../Miscellaneous Tutorials/.idea/Miscellaneous Tutorials.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Udemy Machine Learning Tutorials.iml" filepath="$PROJECT_DIR$/.idea/Udemy Machine Learning Tutorials.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,1 @@
+These excercises are from "Complete Guide to TensorFlow for Deep Learning with Python" from www.udemy.com
