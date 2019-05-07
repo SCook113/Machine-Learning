@@ -1,6 +1,7 @@
 import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
+
 np.random.seed(101)
 tf.set_random_seed(101)
 
@@ -41,8 +42,8 @@ tf.set_random_seed(101)
 # Simple regression example
 #######################################################################
 # Create noisy data with linear form
-x_data = np.linspace(0,10,10) + np.random.uniform(-1.5,1.5,10)
-y_label = np.linspace(0,10,10) + np.random.uniform(-1.5,1.5,10)
+x_data = np.linspace(0, 10, 10) + np.random.uniform(-1.5, 1.5, 10)
+y_label = np.linspace(0, 10, 10) + np.random.uniform(-1.5, 1.5, 10)
 
 # Plot the data
 # plt.plot(x_data,y_label, '*')
@@ -59,14 +60,14 @@ b = tf.Variable(0.19)
 error = 0
 
 # For every value in
-for x,y in zip(x_data,y_label):
+for x, y in zip(x_data, y_label):
     # y_hat ist the prediction we make with your linear function
     # So for every point x we make a prediction
-    y_hat = m*x + b
+    y_hat = m * x + b
     # Here we set the cost function. It has the form of:
     # (y1-y1_hat)**2 + (y2-y2_hat)**2 + (y3-y3_hat)**2 + (y4-y4_hat)**2 + ...
     # This is the function we want to minimize
-    error +=(y-y_hat)**2
+    error += (y - y_hat) ** 2
 
 # As optimizer we choose gradient descent
 optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.001)
@@ -90,8 +91,8 @@ with tf.Session() as sess:
 # Plot the function with optimized values
 print("Slope: ", final_slope)
 print("Intercept: ", final_intercept)
-x_test = np.linspace(-1,11,10)
-y_pred_plot = final_slope*x_test + final_intercept
-plt.plot(x_test,y_pred_plot,'r')
-plt.plot(x_data,y_label,'*')
+x_test = np.linspace(-1, 11, 10)
+y_pred_plot = final_slope * x_test + final_intercept
+plt.plot(x_test, y_pred_plot, 'r')
+plt.plot(x_data, y_label, '*')
 plt.show()

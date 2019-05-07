@@ -1,24 +1,20 @@
 # Load in our libraries
-import pandas as pd
-import numpy as np
-import re
-import sklearn
-import xgboost as xgb
 import warnings
+
+import numpy as np
+import pandas as pd
+
 warnings.filterwarnings('ignore')
-from sklearn.ensemble import (RandomForestClassifier, AdaBoostClassifier,GradientBoostingClassifier, ExtraTreesClassifier)
+from sklearn.ensemble import (RandomForestClassifier, AdaBoostClassifier, ExtraTreesClassifier)
 from sklearn.svm import SVC
-from sklearn.model_selection import KFold
-from sklearn.metrics import classification_report, accuracy_score, confusion_matrix
+from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
-from sklearn.neural_network import MLPClassifier
+
 pd.set_option('display.max_rows', 500)
 pd.set_option('display.max_columns', 500)
 pd.set_option('display.width', 1000)
-import random
 from sklearn.model_selection import KFold
-from sklearn.metrics import accuracy_score
 
 data = pd.read_csv('data/heart.csv')
 # Info
@@ -26,28 +22,27 @@ data = pd.read_csv('data/heart.csv')
 # print(data.info())
 data = data
 
-preds_after_all_runs = np.zeros([31,], dtype=int)
+preds_after_all_runs = np.zeros([31, ], dtype=int)
 
 X = data.drop(['target'], axis=1)
 y = data['target']
 # We create a holdout set for testing in the end
 X_train, testing_X_test, y_train, testing_y_test = train_test_split(X, y, test_size=0.10)
 
-for iteration in range(0,4):
+for iteration in range(0, 4):
     kf_X_train, kf_X_test, kf_y_train, kf_y_test = train_test_split(X_train, y_train, test_size=0.20)
     kf_X_train = kf_X_train.reset_index(drop=True)
     kf_y_train = kf_y_train.reset_index(drop=True)
 
     kf = KFold(n_splits=3)
 
-
     ###################################################
     # First level classifier 1 (RandomForestClassifier)
     ###################################################
     rfc = RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
-                max_depth=3,min_samples_leaf=1, min_samples_split=2,
-                min_weight_fraction_leaf=0.0, n_estimators=3000,
-                oob_score=False, verbose=0, warm_start=False)
+                                 max_depth=3, min_samples_leaf=1, min_samples_split=2,
+                                 min_weight_fraction_leaf=0.0, n_estimators=3000,
+                                 oob_score=False, verbose=0, warm_start=False)
 
     x_train = kf_X_train.values
 
@@ -84,7 +79,7 @@ for iteration in range(0,4):
         # Train on fold
         svc.fit(x_tr, y_tr)
     svc_predictions = svc.predict(svc_X_test)
-    print("SVC accuracy: ",accuracy_score(svc_y_test, svc_predictions))
+    print("SVC accuracy: ", accuracy_score(svc_y_test, svc_predictions))
 
     # # Evaluation
     # print("SVC")
@@ -107,7 +102,7 @@ for iteration in range(0,4):
         # Train on fold
         svc2.fit(x_tr, y_tr)
     svc2_predictions = svc2.predict(svc2_X_test)
-    print("SVC2 accuracy: ",accuracy_score(svc2_y_test, svc2_predictions))
+    print("SVC2 accuracy: ", accuracy_score(svc2_y_test, svc2_predictions))
 
     # # Evaluation
     # print("SVC2")
@@ -130,7 +125,7 @@ for iteration in range(0,4):
         # Train on fold
         svc3.fit(x_tr, y_tr)
     svc3_predictions = svc3.predict(svc3_X_test)
-    print("SVC3 accuracy: ",accuracy_score(svc3_y_test, svc3_predictions))
+    print("SVC3 accuracy: ", accuracy_score(svc3_y_test, svc3_predictions))
 
     # # Evaluation
     # print("SVC3")
@@ -153,7 +148,7 @@ for iteration in range(0,4):
         # Train on fold
         ada.fit(x_tr, y_tr)
     ada_predictions = ada.predict(ada_X_test)
-    print("Ada accuracy: ",accuracy_score(ada_y_test, ada_predictions))
+    print("Ada accuracy: ", accuracy_score(ada_y_test, ada_predictions))
 
     # # Evaluation
     # print("ada")
@@ -163,10 +158,11 @@ for iteration in range(0,4):
     ###################################################
     # First level classifier 4 (Extra Trees)
     ###################################################
-    extra_trees_X_train, extra_trees_X_test, extra_trees_y_train, extra_trees_y_test = train_test_split(X, y, test_size=0.20)
+    extra_trees_X_train, extra_trees_X_test, extra_trees_y_train, extra_trees_y_test = train_test_split(X, y,
+                                                                                                        test_size=0.20)
     extra_trees_X_train = extra_trees_X_train.reset_index(drop=True)
     extra_trees_y_train = extra_trees_y_train.reset_index(drop=True)
-    extra_trees = ExtraTreesClassifier(n_estimators=1000,n_jobs=-1,max_depth=5,min_samples_leaf=2)
+    extra_trees = ExtraTreesClassifier(n_estimators=1000, n_jobs=-1, max_depth=5, min_samples_leaf=2)
 
     x_train = extra_trees_X_train.values
     for i, (train_index, test_index) in enumerate(kf.split(x_train)):
@@ -209,7 +205,7 @@ for iteration in range(0,4):
     # Test data on the holdout set we generated in the beginning
     #############################################################
     NB_predictions_final = NB.predict(testing_X_test)
-    extra_trees_final =extra_trees.predict(testing_X_test)
+    extra_trees_final = extra_trees.predict(testing_X_test)
     ada_predictions_final = ada.predict(testing_X_test)
     svc_predictions_final = svc.predict(testing_X_test)
     svc2_predictions_final = svc2.predict(testing_X_test)
@@ -217,14 +213,15 @@ for iteration in range(0,4):
     rfc_predictions_final = rfc.predict(testing_X_test)
     # Evaluation
     # NB_predictions_final
-    all = np.column_stack((extra_trees_final,ada_predictions_final, svc_predictions_final , rfc_predictions_final,svc2_predictions_final, svc3_predictions_final ))
+    all = np.column_stack((extra_trees_final, ada_predictions_final, svc_predictions_final, rfc_predictions_final,
+                           svc2_predictions_final, svc3_predictions_final))
     # Set all predictions to "1" if mean of all predictions is above 0.5
     mean = all.mean(axis=1)
     end_results = (mean > 0.5).astype(int)
-    if iteration ==0:
+    if iteration == 0:
         preds_after_all_runs = end_results
     else:
-        preds_after_all_runs = np.column_stack((preds_after_all_runs,end_results))
+        preds_after_all_runs = np.column_stack((preds_after_all_runs, end_results))
     print("Iteration: ", iteration)
     # print("in loop", preds_after_all_runs)
     # print(classification_report(end_results, testing_y_test))

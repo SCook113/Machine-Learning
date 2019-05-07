@@ -1,6 +1,5 @@
 import numpy as np
 from sklearn.datasets import make_blobs
-import matplotlib.pyplot as plt
 
 """
 This Script shows how tensorflow would work on a classification problem

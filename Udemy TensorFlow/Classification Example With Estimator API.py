@@ -1,9 +1,10 @@
+import warnings
+
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 import tensorflow as tf
 from sklearn.model_selection import train_test_split
-import warnings
+
 warnings.filterwarnings("ignore")
 
 np.random.seed(101)
@@ -94,17 +95,17 @@ pred_input_func = tf.estimator.inputs.pandas_input_fn(x=X_test, batch_size=10, n
 predictions = model.predict(pred_input_func)
 print(list(predictions))
 
-
 # Dense neural network classifier
 embedded_group_column = tf.feature_column.embedding_column(assigned_group, dimension=4)
-feat_cols = [num_preg ,plasma_gluc,dias_press ,tricep ,insulin,bmi,diabetes_pedigree ,embedded_group_column, age_buckets]
+feat_cols = [num_preg, plasma_gluc, dias_press, tricep, insulin, bmi, diabetes_pedigree, embedded_group_column,
+             age_buckets]
 
-input_func = tf.estimator.inputs.pandas_input_fn(x=X_train,y=y_train,batch_size=10,num_epochs=1000,shuffle=True)
-dnn_model = tf.estimator.DNNClassifier(hidden_units=[10,10,10],feature_columns=feat_cols,n_classes=2)
-dnn_model.train(input_fn=input_func,steps=1000)
+input_func = tf.estimator.inputs.pandas_input_fn(x=X_train, y=y_train, batch_size=10, num_epochs=1000, shuffle=True)
+dnn_model = tf.estimator.DNNClassifier(hidden_units=[10, 10, 10], feature_columns=feat_cols, n_classes=2)
+dnn_model.train(input_fn=input_func, steps=1000)
 
 # Evaluate
-eval_input_func = tf.estimator.inputs.pandas_input_fn( x=X_test, y=y_test, batch_size=10, num_epochs=1, shuffle=False)
+eval_input_func = tf.estimator.inputs.pandas_input_fn(x=X_test, y=y_test, batch_size=10, num_epochs=1, shuffle=False)
 eval = dnn_model.evaluate(eval_input_func)
 
 print(eval)

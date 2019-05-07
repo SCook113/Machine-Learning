@@ -11,82 +11,84 @@
 # 5 Dense Layer
 # 6 Dense Layer
 from __future__ import absolute_import, division, print_function
-import tensorflow as tf
+
 import numpy as np
+import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 
 tf.logging.set_verbosity(tf.logging.INFO)
 
+
 def cnn_model_fn(features, labels, mode):
-  """Model function for CNN."""
-  # Input Layer
-  # First we need to reshape the flattened data to pictures
-  input_layer = tf.reshape(features["x"], [-1, 28, 28, 1])
+    """Model function for CNN."""
+    # Input Layer
+    # First we need to reshape the flattened data to pictures
+    input_layer = tf.reshape(features["x"], [-1, 28, 28, 1])
 
-  # Convolutional Layer #1
-  # A layer that creates 32 filters and uses relu as activation function
-  conv1 = tf.layers.conv2d(
-      inputs=input_layer,
-      filters=32,
-      kernel_size=[5, 5],
-      padding="same",
-      activation=tf.nn.relu)
+    # Convolutional Layer #1
+    # A layer that creates 32 filters and uses relu as activation function
+    conv1 = tf.layers.conv2d(
+        inputs=input_layer,
+        filters=32,
+        kernel_size=[5, 5],
+        padding="same",
+        activation=tf.nn.relu)
 
-  # Pooling Layer #1
-  # We use a pooling window_size of 2x2 which reduces the size of the image by 75%
-  pool1 = tf.layers.max_pooling2d(inputs=conv1, pool_size=[2, 2], strides=2)
+    # Pooling Layer #1
+    # We use a pooling window_size of 2x2 which reduces the size of the image by 75%
+    pool1 = tf.layers.max_pooling2d(inputs=conv1, pool_size=[2, 2], strides=2)
 
-  # Convolutional Layer #2
-  # A layer that creates 64 filters and uses relu as activation function
-  conv2 = tf.layers.conv2d(
-      inputs=pool1,
-      filters=64,
-      kernel_size=[5, 5],
-      padding="same",
-      activation=tf.nn.relu)
-  pool2 = tf.layers.max_pooling2d(inputs=conv2, pool_size=[2, 2], strides=2)
+    # Convolutional Layer #2
+    # A layer that creates 64 filters and uses relu as activation function
+    conv2 = tf.layers.conv2d(
+        inputs=pool1,
+        filters=64,
+        kernel_size=[5, 5],
+        padding="same",
+        activation=tf.nn.relu)
+    pool2 = tf.layers.max_pooling2d(inputs=conv2, pool_size=[2, 2], strides=2)
 
-  # Dense Layer
-  # This layer has 1024 neurons, also uses the relu activation function and
-  # dropout is implemented for training
-  pool2_flat = tf.reshape(pool2, [-1, 7 * 7 * 64])
-  dense = tf.layers.dense(inputs=pool2_flat, units=1024, activation=tf.nn.relu)
-  dropout = tf.layers.dropout(
-      inputs=dense, rate=0.25, training=mode == tf.estimator.ModeKeys.TRAIN)
+    # Dense Layer
+    # This layer has 1024 neurons, also uses the relu activation function and
+    # dropout is implemented for training
+    pool2_flat = tf.reshape(pool2, [-1, 7 * 7 * 64])
+    dense = tf.layers.dense(inputs=pool2_flat, units=1024, activation=tf.nn.relu)
+    dropout = tf.layers.dropout(
+        inputs=dense, rate=0.25, training=mode == tf.estimator.ModeKeys.TRAIN)
 
-  # Logits Layer
-  # Output layer that gives us probability for 10 classes
-  logits = tf.layers.dense(inputs=dropout, units=10)
+    # Logits Layer
+    # Output layer that gives us probability for 10 classes
+    logits = tf.layers.dense(inputs=dropout, units=10)
 
-  predictions = {
-      # Generate predictions (for PREDICT and EVAL mode)
-      "classes": tf.argmax(input=logits, axis=1),
-      # Add `softmax_tensor` to the graph. It is used for PREDICT and by the
-      # `logging_hook`.
-      "probabilities": tf.nn.softmax(logits, name="softmax_tensor")
-  }
+    predictions = {
+        # Generate predictions (for PREDICT and EVAL mode)
+        "classes": tf.argmax(input=logits, axis=1),
+        # Add `softmax_tensor` to the graph. It is used for PREDICT and by the
+        # `logging_hook`.
+        "probabilities": tf.nn.softmax(logits, name="softmax_tensor")
+    }
 
-  if mode == tf.estimator.ModeKeys.PREDICT:
-    return tf.estimator.EstimatorSpec(mode=mode, predictions=predictions)
+    if mode == tf.estimator.ModeKeys.PREDICT:
+        return tf.estimator.EstimatorSpec(mode=mode, predictions=predictions)
 
-  # Calculate Loss (for both TRAIN and EVAL modes)
-  loss = tf.losses.sparse_softmax_cross_entropy(labels=labels, logits=logits)
+    # Calculate Loss (for both TRAIN and EVAL modes)
+    loss = tf.losses.sparse_softmax_cross_entropy(labels=labels, logits=logits)
 
-  # Configure the Training Op (for TRAIN mode)
-  if mode == tf.estimator.ModeKeys.TRAIN:
-    optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.001)
-    train_op = optimizer.minimize(
-        loss=loss,
-        global_step=tf.train.get_global_step())
-    return tf.estimator.EstimatorSpec(mode=mode, loss=loss, train_op=train_op)
+    # Configure the Training Op (for TRAIN mode)
+    if mode == tf.estimator.ModeKeys.TRAIN:
+        optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.001)
+        train_op = optimizer.minimize(
+            loss=loss,
+            global_step=tf.train.get_global_step())
+        return tf.estimator.EstimatorSpec(mode=mode, loss=loss, train_op=train_op)
 
-  # Add evaluation metrics (for EVAL mode)
-  eval_metric_ops = {
-      "accuracy": tf.metrics.accuracy(
-          labels=labels, predictions=predictions["classes"])
-  }
-  return tf.estimator.EstimatorSpec(
-      mode=mode, loss=loss, eval_metric_ops=eval_metric_ops)
+    # Add evaluation metrics (for EVAL mode)
+    eval_metric_ops = {
+        "accuracy": tf.metrics.accuracy(
+            labels=labels, predictions=predictions["classes"])
+    }
+    return tf.estimator.EstimatorSpec(
+        mode=mode, loss=loss, eval_metric_ops=eval_metric_ops)
 
 
 mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
@@ -95,10 +97,10 @@ mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 ((train_data, train_labels),
  (eval_data, eval_labels)) = tf.keras.datasets.mnist.load_data()
 
-train_data = train_data/np.float32(255)
+train_data = train_data / np.float32(255)
 train_labels = train_labels.astype(np.int32)  # not required
 
-eval_data = eval_data/np.float32(255)
+eval_data = eval_data / np.float32(255)
 eval_labels = eval_labels.astype(np.int32)  # not required
 
 # We now create an estimator
@@ -123,7 +125,6 @@ mnist_classifier.train(
     input_fn=train_input_fn,
     steps=100,
     hooks=[logging_hook])
-
 
 eval_input_fn = tf.estimator.inputs.numpy_input_fn(
     x={"x": eval_data},

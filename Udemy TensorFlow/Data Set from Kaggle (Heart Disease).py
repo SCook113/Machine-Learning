@@ -1,24 +1,7 @@
 import tensorflow as tf
-import random as rnd
-import seaborn as sns
-import matplotlib.pyplot as plt
-from sklearn.ensemble import BaggingClassifier
-import numpy as np
-from sklearn.ensemble import VotingClassifier
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import recall_score
-from sklearn.svm import SVC, LinearSVC
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.naive_bayes import GaussianNB
-from sklearn.linear_model import Perceptron
-from sklearn.linear_model import SGDClassifier
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report, accuracy_score, confusion_matrix
+from sklearn.metrics import accuracy_score
 
 tf.logging.set_verbosity(tf.logging.INFO)
-from tensorflow.contrib.keras import models
 from sklearn.preprocessing import MinMaxScaler
 import pandas as pd
 import random
@@ -87,7 +70,7 @@ feat_cols = []
 for col in X.columns:
     feat_cols.append(tf.feature_column.numeric_column(col))
 accuracy_scores = []
-for numeration in range(0,10):
+for numeration in range(0, 10):
     input_func = tf.estimator.inputs.pandas_input_fn(x=X_train, y=y_train, batch_size=30, num_epochs=150, shuffle=True)
     ADAM = tf.train.AdamOptimizer(learning_rate=0.01)
     he_init = tf.contrib.layers.variance_scaling_initializer()
@@ -108,7 +91,4 @@ for numeration in range(0,10):
     accuracy_scores.append(acc)
     print("Accuracy: ", accuracy_score(y_test, final_preds))
 print("all: ", accuracy_scores)
-print("avg: ", sum(accuracy_scores)/len(accuracy_scores))
-
-
-
+print("avg: ", sum(accuracy_scores) / len(accuracy_scores))

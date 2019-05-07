@@ -1,17 +1,16 @@
+import warnings
+from sklearn import datasets
+from sklearn.ensemble import BaggingClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import VotingClassifier
-from sklearn import datasets
 from sklearn.linear_model import LogisticRegression
-from sklearn.svm import SVC
-from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
-from sklearn.ensemble import BaggingClassifier
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
-import numpy as np
-import warnings
+from sklearn.svm import SVC
+from sklearn.tree import DecisionTreeClassifier
+
 warnings.filterwarnings("ignore", category=FutureWarning)
 
 # Load dataset
@@ -22,8 +21,8 @@ y = iris.target
 data_copy = X.copy()
 
 num_pipeline = Pipeline([
-        ('std_scaler', StandardScaler()),
-    ])
+    ('std_scaler', StandardScaler()),
+])
 
 # Run the whole pipeline:
 X = num_pipeline.fit_transform(data_copy)

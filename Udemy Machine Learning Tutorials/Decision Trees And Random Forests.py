@@ -1,18 +1,15 @@
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
 from sklearn.ensemble import RandomForestClassifier
+import warnings
+
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import classification_report, confusion_matrix
-import warnings
+
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 warnings.filterwarnings("ignore", category=FutureWarning)
 
 import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Read dataset
@@ -46,5 +43,5 @@ dtree.fit(X_train, y_train)
 rfc = RandomForestClassifier(n_estimators=500)
 rfc.fit(X_train, y_train)
 rfc_pred = rfc.predict(X_test)
-print(confusion_matrix(y_test,rfc_pred))
-print(classification_report(y_test,rfc_pred))
+print(confusion_matrix(y_test, rfc_pred))
+print(classification_report(y_test, rfc_pred))

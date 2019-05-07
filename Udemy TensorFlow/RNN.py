@@ -104,14 +104,11 @@ with tf.Session() as sess:
 
     # SEED WITH Training Instance
     training_instance = list(ts_data.y_true[:30])
-    for iteration in range(len(training_instance) -num_time_steps):
+    for iteration in range(len(training_instance) - num_time_steps):
         X_batch = np.array(training_instance[-num_time_steps:]).reshape(1, num_time_steps, 1)
         y_pred = sess.run(outputs, feed_dict={X: X_batch})
         training_instance.append(y_pred[0, -1, 0])
 plt.plot(ts_data.x_data, ts_data.y_true, "b-")
-plt.plot(ts_data.x_data[:num_time_steps],training_instance[:num_time_steps], "r-", linewidth=3)
+plt.plot(ts_data.x_data[:num_time_steps], training_instance[:num_time_steps], "r-", linewidth=3)
 plt.xlabel("Time")
 plt.show()
-
-
-

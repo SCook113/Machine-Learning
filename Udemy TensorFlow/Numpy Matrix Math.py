@@ -117,8 +117,9 @@ print("Example Cosine Similarity")
 #################################################
 from numpy import dot
 from numpy.linalg import norm
+
 x = np.array([0.1, 0, 0, 0.1, 0.1])
 y = np.array([0, 0.1, 0.1, 0, 0])
-cos_sim = dot(x, y)/(norm(x)*norm(y))
-print(cos_sim) # Ergibt 0
+cos_sim = dot(x, y) / (norm(x) * norm(y))
+print(cos_sim)  # Ergibt 0
 print("End of Example Cosine Similarity")

@@ -1,26 +1,24 @@
-import matplotlib
+import warnings
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import hashlib
-from sklearn.model_selection import train_test_split
-from sklearn.model_selection import StratifiedShuffleSplit
 import pandas.tools.plotting as ptool
-from sklearn.preprocessing import Imputer
-from sklearn.preprocessing import LabelEncoder
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.preprocessing import LabelBinarizer
 from sklearn.base import BaseEstimator, TransformerMixin
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler
-from sklearn.pipeline import FeatureUnion
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
-from sklearn.tree import DecisionTreeRegressor
-from sklearn.model_selection import cross_val_score
-from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import GridSearchCV
-import warnings
+from sklearn.model_selection import StratifiedShuffleSplit
+from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import FeatureUnion
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import Imputer
+from sklearn.preprocessing import LabelBinarizer
+from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.preprocessing import StandardScaler
+from sklearn.tree import DecisionTreeRegressor
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 warnings.filterwarnings("ignore", category=FutureWarning)
@@ -287,25 +285,25 @@ trained_model = lin_reg.fit(prepared_data, housing_labels)
 # Testing our trained model
 #################################################
 #################################################
-# # Testing on a sample
-# some_data = housing_copy.iloc[:5]
-# some_labels = housing_labels.iloc[:5]
-# some_data_prepared = full_pipeline.transform(some_data)
-# # The model works but it is very inaccurate:
-# predictions = trained_model.predict(some_data_prepared)
-# print("Predictions:", predictions)
-# print("Predictions:", list(some_labels))
+# Testing on a sample
+some_data = housing_copy.iloc[:5]
+some_labels = housing_labels.iloc[:5]
+some_data_prepared = full_pipeline.transform(some_data)
+# The model works but it is very inaccurate:
+predictions = trained_model.predict(some_data_prepared)
+print("Predictions:", predictions)
+print("Predictions:", list(some_labels))
 
-# # Here we calculate the mse
-# housing_predictions = lin_reg.predict(prepared_data)
-# housing_predictions = lin_reg.predict(prepared_data)
-# lin_mse = mean_squared_error(housing_labels, housing_predictions)
-# lin_rmse = np.sqrt(lin_mse)
+# Here we calculate the mse
+housing_predictions = lin_reg.predict(prepared_data)
+housing_predictions = lin_reg.predict(prepared_data)
+lin_mse = mean_squared_error(housing_labels, housing_predictions)
+lin_rmse = np.sqrt(lin_mse)
 
-# # In this case the mse represents the amount of dollars we miscalculated
-# # We miscalculate (on average) by 68,629 dollars. With housing prices
-# # ranging between 120,000 and 265,000 that is a lot
-# print(lin_rmse)
+# In this case the mse represents the amount of dollars we miscalculated
+# We miscalculate (on average) by 68,629 dollars. With housing prices
+# ranging between 120,000 and 265,000 that is a lot
+print(lin_rmse)
 
 #################################################
 #################################################

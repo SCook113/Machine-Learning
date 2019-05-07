@@ -15,15 +15,18 @@ from sklearn.tree import DecisionTreeClassifier
 import pandas as pd
 from sklearn.exceptions import DataConversionWarning
 import warnings
+
 warnings.filterwarnings(action='ignore', category=DataConversionWarning)
 pd.set_option('display.expand_frame_repr', False)
 pd.set_option('display.max_rows', 500)
 pd.set_option('display.max_columns', 500)
 pd.set_option('display.width', 1000)
 import random
+
 # Seed so we always get same results when filling missing values
 random.seed()
 import warnings
+
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 warnings.filterwarnings("ignore", category=FutureWarning)
 ######################################################################################################
@@ -108,11 +111,11 @@ columns_to_delete = list(filter(lambda a: a[1] < 0.01, sorted))
 column_names = map(lambda a: a[0], columns_to_delete)
 data = training_data.drop(column_names, axis=1)
 from sklearn.preprocessing import StandardScaler
+
 scaler = StandardScaler()
 data2 = scaler.fit_transform(data)
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import ExtraTreesClassifier
-
 
 ######################################################################################################
 ######################################################################################################
@@ -120,19 +123,18 @@ from sklearn.ensemble import ExtraTreesClassifier
 X_train, X_test, y_train, y_test = train_test_split(data2, training_labels, stratify=training_labels, test_size=0.25)
 
 percent = list()
-for bagging_run in range(0,30):
+for bagging_run in range(0, 30):
 
     # train 3 classifiers
     final_preds = []
     for x in range(0, 3):
-        clf = ExtraTreesClassifier(n_estimators =100)
+        clf = ExtraTreesClassifier(n_estimators=100)
         clf.fit(X_train, y_train)
         y_pred = clf.predict(X_test)
         final_preds.append(y_pred)
         # print(classification_report(y_test, y_pred, labels=[1, 2, 3, 4, 5, 6, 7]))
 
     summary = np.zeros(shape=(len(final_preds[0]), len(final_preds) + 1))
-
 
     # Create an array with all predictions in a row
     # with the correct prediction at the end
@@ -147,7 +149,7 @@ for bagging_run in range(0,30):
 
     # Create voted List
     summed_votes = np.zeros(shape=y_pred.shape)
-    for it in range(0,y_pred.shape[0]):
+    for it in range(0, y_pred.shape[0]):
         lll = summary[it][:-1].tolist()
         summed_votes[it] = max(set(lll), key=lll.count)
     # Compare summed votes to last classifiers result
@@ -155,7 +157,6 @@ for bagging_run in range(0,30):
     print("Accuracy score: ", accuracy_score(y_test, y_pred))
     print(classification_report(y_test, summed_votes, labels=[1, 2, 3, 4, 5, 6, 7]))
     print("Accuracy score: ", accuracy_score(y_test, summed_votes))
-
 
     # Stats
     not_all_same = list()
@@ -184,7 +185,7 @@ for bagging_run in range(0,30):
                     dups.append(x)
 
             if dups != list():
-                # if there are duplicates found and the duplicate is the correct predition
+                # if there are duplicates found and the duplicate is the correct prediction
                 # increase count of "would be predicted correctly"
                 if dups[0] == row[-1]:
                     count_would_correct = count_would_correct + 1
@@ -196,15 +197,15 @@ for bagging_run in range(0,30):
 
         # Rows with duplicates to array
         r_w_d = np.zeros(shape=(len(rows_with_dups), 4))
-        for i in range(0 , len(rows_with_dups)):
+        for i in range(0, len(rows_with_dups)):
             r_w_d[i] = rows_with_dups[i]
-        print('#'*10,"Run: " , bagging_run,'#'*10)
-        print("from all ", len(not_all_same)," ambiguous rows, ", len(rows_with_dups), " had duplicates")
-        print("from all ",len(rows_with_dups)," rows with duplicates, ", count_would_correct, " would have been corrected")
-        print("and " , count_would_miss , " would have been missclassified")
-        print("We would have classifieed ", count_would_correct - count_would_miss , " correctly")
+        print('#' * 10, "Run: ", bagging_run, '#' * 10)
+        print("from all ", len(not_all_same), " ambiguous rows, ", len(rows_with_dups), " had duplicates")
+        print("from all ", len(rows_with_dups), " rows with duplicates, ", count_would_correct,
+              " would have been corrected")
+        print("and ", count_would_miss, " would have been missclassified")
+        print("We would have classifieed ", count_would_correct - count_would_miss, " correctly")
         percent.append(len(not_all_same) / (count_would_correct - count_would_miss))
-        print("That is: ", len(not_all_same) / (count_would_correct - count_would_miss) , "%")
+        print("That is: ", len(not_all_same) / (count_would_correct - count_would_miss), "%")
 
-print("On average thats " , sum(percent) / len(percent))
-
+print("On average thats ", sum(percent) / len(percent))

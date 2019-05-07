@@ -1,10 +1,9 @@
-import nltk
 from nltk.corpus import stopwords
+
 # nltk.download('stopwords')
 stopwords = stopwords.words('english')
 import pandas as pd
 import string
-
 
 messages = pd.read_csv('data/SMSSpamCollection', sep='\t', names=['label', 'message'])
 
@@ -32,7 +31,9 @@ def text_process(mess):
     # Now just remove any stopwords
     return [word for word in nopunc.split() if word.lower() not in stopwords]
 
+
 from sklearn.feature_extraction.text import CountVectorizer
+
 bow_transformer = CountVectorizer(analyzer=text_process).fit(messages['message'])
 
 print(len(bow_transformer.vocabulary_))
@@ -43,9 +44,8 @@ from sklearn.feature_extraction.text import TfidfTransformer
 
 tfidf_transformer = TfidfTransformer().fit(messages_bow)
 
-
 messages_tfidf = tfidf_transformer.transform(messages_bow)
 
 from sklearn.naive_bayes import MultinomialNB
-spam_detect_model = MultinomialNB().fit(messages_tfidf, messages['label'])
 
+spam_detect_model = MultinomialNB().fit(messages_tfidf, messages['label'])

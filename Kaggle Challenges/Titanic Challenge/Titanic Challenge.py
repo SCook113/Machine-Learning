@@ -1,17 +1,14 @@
 import random as rnd
-import seaborn as sns
-import matplotlib.pyplot as plt
+
 import numpy as np
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import recall_score
-from sklearn.svm import SVC, LinearSVC
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.naive_bayes import GaussianNB
-from sklearn.linear_model import Perceptron
-from sklearn.linear_model import SGDClassifier
-from sklearn.tree import DecisionTreeClassifier
 import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import SGDClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import SVC, LinearSVC
+from sklearn.tree import DecisionTreeClassifier
 
 pd.set_option('display.max_rows', 500)
 pd.set_option('display.max_columns', 500)
@@ -21,6 +18,7 @@ import random
 # Seed so we always get same results when filling missing values
 random.seed(57)
 import warnings
+
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 warnings.filterwarnings("ignore", category=FutureWarning)
 

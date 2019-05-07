@@ -1,8 +1,8 @@
-import pandas as pd
-import numpy as np
-from matplotlib import pyplot as plt
-import seaborn as sns
 import warnings
+
+import numpy as np
+import pandas as pd
+
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 warnings.filterwarnings("ignore", category=FutureWarning)
 
@@ -52,7 +52,6 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 # Logistic Regression (Default)
 ################################################################
 from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import cross_val_score
 from sklearn import metrics
 
 model_LR = LogisticRegression()
@@ -71,7 +70,6 @@ print(auc_roc)
 # Logistic Regression (Tuned)
 ################################################################
 from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import cross_val_score
 from sklearn import metrics
 
 LR_model = LogisticRegression()
@@ -81,14 +79,14 @@ tuned_parameters = {'C': [0.001, 0.01, 0.1, 1, 10, 100, 1000],
                     }
 from sklearn.model_selection import GridSearchCV
 
-LR= GridSearchCV(LR_model, tuned_parameters,cv=10)
-LR.fit(X_train,y_train)
+LR = GridSearchCV(LR_model, tuned_parameters, cv=10)
+LR.fit(X_train, y_train)
 print(LR.best_params_)
 
-y_prob = LR.predict_proba(X_test)[:,1] # This will give you positive class prediction probabilities
-y_pred = np.where(y_prob > 0.5, 1, 0) # This will threshold the probabilities to give class predictions.
+y_prob = LR.predict_proba(X_test)[:, 1]  # This will give you positive class prediction probabilities
+y_pred = np.where(y_prob > 0.5, 1, 0)  # This will threshold the probabilities to give class predictions.
 print(LR.score(X_test, y_pred))
-confusion_matrix=metrics.confusion_matrix(y_test,y_pred)
+confusion_matrix = metrics.confusion_matrix(y_test, y_pred)
 print(confusion_matrix)
-auc_roc=metrics.roc_auc_score(y_test,y_pred)
+auc_roc = metrics.roc_auc_score(y_test, y_pred)
 print(auc_roc)

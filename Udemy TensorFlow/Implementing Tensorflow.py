@@ -1,7 +1,10 @@
 import numpy as np
+
 """
 This Script is a (very simple) implementation how the basics of tensorflow works under the hood.
 """
+
+
 def traverse_postorder(operation):
     """
     Makes sure computations are done in the correct order
@@ -16,7 +19,6 @@ def traverse_postorder(operation):
 
     recurse(operation)
     return nodes_postorder
-
 
 
 class Operation():
@@ -36,44 +38,48 @@ class Operation():
     def compute(self):
         pass
 
+
 #######################################################################
 # Operations
 #######################################################################
 class add(Operation):
 
-    def __init__(self,x,y):
-        super().__init__([x,y])
+    def __init__(self, x, y):
+        super().__init__([x, y])
 
-    def compute(self,x_var,y_var):
-        self.inputs = [x_var,y_var]
+    def compute(self, x_var, y_var):
+        self.inputs = [x_var, y_var]
         return x_var + y_var
+
 
 class multiply(Operation):
 
-    def __init__(self,x,y):
-        super().__init__([x,y])
+    def __init__(self, x, y):
+        super().__init__([x, y])
 
-    def compute(self,x_var,y_var):
-        self.inputs = [x_var,y_var]
+    def compute(self, x_var, y_var):
+        self.inputs = [x_var, y_var]
         return x_var * y_var
 
 
 class matmul(Operation):
 
-    def __init__(self,x,y):
-        super().__init__([x,y])
+    def __init__(self, x, y):
+        super().__init__([x, y])
 
-    def compute(self,x_var,y_var):
-        self.inputs = [x_var,y_var]
+    def compute(self, x_var, y_var):
+        self.inputs = [x_var, y_var]
         return x_var.dot(y_var)
+
 
 #######################################################################
 # Placeholder
 #######################################################################
 class Placeholder():
     def __init__(self):
-        self.output_nodes=[]
+        self.output_nodes = []
         _default_graph.placeholders.append(self)
+
 
 #######################################################################
 # Variable
@@ -83,6 +89,8 @@ class Variable():
         self.value = initial_value
         self.output_nodes = []
         _default_graph.variables.append(self)
+
+
 #######################################################################
 # Placeholder
 # Keeps track of all the variables, operations and placeholders
@@ -96,6 +104,7 @@ class Graph():
     def set_as_default(self):
         global _default_graph
         _default_graph = self
+
 
 #######################################################################
 # Session
@@ -135,6 +144,7 @@ class Session:
         # Return the requested node value
         return operation.output
 
+
 # # Show how simple computation works
 # g = Graph()
 # g.set_as_default()
@@ -151,10 +161,10 @@ class Session:
 g = Graph()
 sess = Session()
 g.set_as_default()
-A = Variable([[10,20],[30,40]])
-b = Variable([1,1])
+A = Variable([[10, 20], [30, 40]])
+b = Variable([1, 1])
 x = Placeholder()
-y = matmul(A,x)
-z = add(y,b)
-result = sess.run(operation=z, feed_dict={x:10})
+y = matmul(A, x)
+z = add(y, b)
+result = sess.run(operation=z, feed_dict={x: 10})
 print(result)

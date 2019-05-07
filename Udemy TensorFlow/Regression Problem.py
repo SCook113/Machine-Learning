@@ -10,7 +10,7 @@ import tensorflow as tf
 np.random.seed(101)
 tf.set_random_seed(101)
 
-x_data = np.linspace(0.0,10.0,1000000)
+x_data = np.linspace(0.0, 10.0, 1000000)
 # Make data points noisy
 noise = np.random.randn(len(x_data))
 
@@ -36,13 +36,13 @@ batch_size = 8
 # Initialize variables
 m = tf.Variable(0.81)
 b = tf.Variable(0.17)
-#Initialize placeholders
+# Initialize placeholders
 xph = tf.placeholder(tf.float32, [batch_size])
 yph = tf.placeholder(tf.float32, [batch_size])
 # Initializse model
 y_model = m * xph + b
 # Initialize error function
-error = tf.reduce_sum(tf.square(yph-y_model))
+error = tf.reduce_sum(tf.square(yph - y_model))
 
 optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.001)
 train = optimizer.minimize(error)
@@ -56,14 +56,14 @@ with tf.Session() as sess:
         # Grab 8 random indexes
         rand_ind = np.random.randint(len(x_data), size=batch_size)
         # Feed 8 random points to the graph
-        feed = {xph:x_data[rand_ind], yph:y_true[rand_ind]}
+        feed = {xph: x_data[rand_ind], yph: y_true[rand_ind]}
 
-        sess.run(train, feed_dict= feed)
+        sess.run(train, feed_dict=feed)
     # Get back the calculated values for m and b
-    model_m , model_b = sess.run([m,b])
+    model_m, model_b = sess.run([m, b])
     print(model_m, model_b)
 
-y_hat = x_data*model_m + model_b
+y_hat = x_data * model_m + model_b
 my_data.sample(200).plot(kind='scatter', x='X_Data', y='Y_Data')
-plt.plot(x_data, y_hat,'r')
+plt.plot(x_data, y_hat, 'r')
 plt.show()

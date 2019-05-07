@@ -1,28 +1,15 @@
-import random as rnd
-import seaborn as sns
-import matplotlib.pyplot as plt
-import numpy as np
-from statistics import mode
-from collections import Counter
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import recall_score
-from sklearn.metrics import accuracy_score
-from sklearn.svm import SVC, LinearSVC
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.naive_bayes import GaussianNB
-from sklearn.linear_model import Perceptron
-from sklearn.linear_model import SGDClassifier
-from sklearn.ensemble import GradientBoostingClassifier
-from sklearn.model_selection import GridSearchCV
-from sklearn.metrics import classification_report, confusion_matrix, roc_curve, auc
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import ExtraTreesClassifier
-import pandas as pd
-from sklearn.exceptions import DataConversionWarning
 import warnings
+from collections import Counter
+
+import numpy as np
+import pandas as pd
+from sklearn.ensemble import ExtraTreesClassifier
+from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.exceptions import DataConversionWarning
+from sklearn.metrics import classification_report
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 
 warnings.filterwarnings(action='ignore', category=DataConversionWarning)
 pd.set_option('display.expand_frame_repr', False)
@@ -84,14 +71,12 @@ for run in range(0, 1):
         for i in range(len(single_preds)):
             summary[j][i] = single_preds[i][j]
 final_preds_xtratrees = []
-for i in range(0,len(summary)):
+for i in range(0, len(summary)):
     final_preds_xtratrees = np.append(final_preds_xtratrees, Counter(summary[i].tolist()).most_common(1)[0][0])
 # print(final_preds_xtratrees)
 
 
-
 print(classification_report(y_test, final_preds_xtratrees, labels=[1, 2, 3, 4, 5, 6, 7]))
-
 
 # GradientBoostingClassifier
 single_preds = []
@@ -108,11 +93,11 @@ for run in range(0, 1):
         for i in range(len(single_preds)):
             summary[j][i] = single_preds[i][j]
 final_preds_GradientBoostingClassifier = []
-for i in range(0,len(summary)):
-    final_preds_GradientBoostingClassifier = np.append(final_preds_GradientBoostingClassifier, Counter(summary[i].tolist()).most_common(1)[0][0])
+for i in range(0, len(summary)):
+    final_preds_GradientBoostingClassifier = np.append(final_preds_GradientBoostingClassifier,
+                                                       Counter(summary[i].tolist()).most_common(1)[0][0])
 # print(final_preds_knn)
 print(classification_report(y_test, final_preds_GradientBoostingClassifier, labels=[1, 2, 3, 4, 5, 6, 7]))
-
 
 # GradientBoostingClassifier
 single_preds = []
@@ -129,24 +114,14 @@ for run in range(0, 1):
         for i in range(len(single_preds)):
             summary[j][i] = single_preds[i][j]
 final_preds_RandomForest = []
-for i in range(0,len(summary)):
+for i in range(0, len(summary)):
     final_preds_RandomForest = np.append(final_preds_RandomForest, Counter(summary[i].tolist()).most_common(1)[0][0])
 # print(final_preds_knn)
 print(classification_report(y_test, final_preds_RandomForest, labels=[1, 2, 3, 4, 5, 6, 7]))
 
-#all = np.concatenate((final_preds_xtratrees, final_preds_xtratrees), axis=1)
+# all = np.concatenate((final_preds_xtratrees, final_preds_xtratrees), axis=1)
 final_preds_xtratrees = final_preds_xtratrees.reshape((-1, 1))
 final_preds_RandomForest = final_preds_RandomForest.reshape((-1, 1))
 final_preds_GradientBoostingClassifier = final_preds_GradientBoostingClassifier.reshape((-1, 1))
-new_training = np.concatenate((final_preds_RandomForest, final_preds_xtratrees,final_preds_GradientBoostingClassifier), axis=1)
-
-
-
-
-
-
-
-
-
-
-
+new_training = np.concatenate((final_preds_RandomForest, final_preds_xtratrees, final_preds_GradientBoostingClassifier),
+                              axis=1)

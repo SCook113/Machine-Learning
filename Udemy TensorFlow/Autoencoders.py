@@ -1,11 +1,10 @@
-import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.datasets import make_blobs
 import tensorflow as tf
-from tensorflow.contrib.layers import fully_connected
+from sklearn.datasets import make_blobs
 from sklearn.preprocessing import MinMaxScaler
+from tensorflow.contrib.layers import fully_connected
 
-data = make_blobs(n_samples=100, n_features=3,centers=2,random_state=101)
+data = make_blobs(n_samples=100, n_features=3, centers=2, random_state=101)
 
 # data[0] = Data
 # data[1] = Classes
@@ -14,24 +13,23 @@ data = make_blobs(n_samples=100, n_features=3,centers=2,random_state=101)
 scaler = MinMaxScaler()
 scaled_data = scaler.fit_transform(data[0])
 
-data_x = scaled_data[:,0]
-data_y = scaled_data[:,1]
-data_z = scaled_data[:,2]
+data_x = scaled_data[:, 0]
+data_y = scaled_data[:, 1]
+data_z = scaled_data[:, 2]
 
-from mpl_toolkits.mplot3d import Axes3D
 fig = plt.figure()
-ax = fig.add_subplot(111,projection='3d')
+ax = fig.add_subplot(111, projection='3d')
 # plt.show()
 
 fig = plt.figure()
-ax = fig.add_subplot(111,projection='3d')
-ax.scatter(data_x,data_y,data_z,c=data[1])
+ax = fig.add_subplot(111, projection='3d')
+ax.scatter(data_x, data_y, data_z, c=data[1])
 # plt.show()
 
 #
 num_inputs = 3  # 3 dimensional input
 num_hidden = 2  # 2 dimensional representation
-num_outputs = num_inputs # Must be true for an autoencoder!
+num_outputs = num_inputs  # Must be true for an autoencoder!
 
 learning_rate = 0.01
 
@@ -41,12 +39,12 @@ X = tf.placeholder(tf.float32, shape=[None, num_inputs])
 hidden = fully_connected(X, num_hidden, activation_fn=None)
 outputs = fully_connected(hidden, num_outputs, activation_fn=None)
 
-#Loss
+# Loss
 loss = tf.reduce_mean(tf.square(outputs - X))
 
 # Optimizer
 optimizer = tf.train.AdamOptimizer(learning_rate)
-train  = optimizer.minimize(loss)
+train = optimizer.minimize(loss)
 
 init = tf.global_variables_initializer()
 
