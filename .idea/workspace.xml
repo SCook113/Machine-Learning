@@ -18,6 +18,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Kaggle Challenges/Forest Classification/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Kaggle Challenges/Forest Classification/Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,21 +28,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Kaggle Challenges/Face Recognition/README.md">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="323">
-                <caret line="19" selection-start-line="19" selection-end-line="19" />
+              <first_editor relative-caret-position="34">
+                <caret line="2" column="69" selection-start-line="2" selection-start-column="69" selection-end-line="2" selection-end-column="69" />
               </first_editor>
               <second_editor />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Facial Points Recognition Challenge/data/test.csv">
-          <provider selected="true" editor-type-id="LargeFileEditor" />
         </entry>
       </file>
     </leaf>
@@ -74,7 +70,6 @@
         <option value="$PROJECT_DIR$/Kaggle Challenges/README.md" />
         <option value="$PROJECT_DIR$/Miscellaneous Tutorials/README.txt" />
         <option value="$PROJECT_DIR$/Udemy TensorFlow/README.md" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/Kaggle Challenges/Ensemble Learning/Ensemble And Stacking .py" />
         <option value="$PROJECT_DIR$/Hands On Machine Learning Exercises/HoML Ensemble Learning.py" />
         <option value="$PROJECT_DIR$/Hands On Machine Learning Exercises/HoML GDPandLifeSatisfaction.py" />
@@ -118,10 +113,11 @@
         <option value="$PROJECT_DIR$/Kaggle Challenges/Face Recognition/test.py" />
         <option value="$PROJECT_DIR$/Kaggle Challenges/Face Recognition/data_info/print_infos_to_file.py" />
         <option value="$PROJECT_DIR$/Kaggle Challenges/Face Recognition/README.md" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="width" value="581" />
     <option name="height" value="728" />
   </component>
@@ -137,16 +133,6 @@
             <path>
               <item name="Machine Learning" type="b2602c69:ProjectViewProjectNode" />
               <item name="Machine Learning" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Machine Learning" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Machine Learning" type="462c0819:PsiDirectoryNode" />
-              <item name="Facial Points Recognition Challenge" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Machine Learning" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Machine Learning" type="462c0819:PsiDirectoryNode" />
-              <item name="Kaggle Challenges" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -316,8 +302,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49918166" visible="true" weight="0.30505952" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49918166" visible="true" weight="0.24627976" />
       <window_info id="Structure" order="1" sideWeight="0.5008183" side_tool="true" weight="0.19791667" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -367,16 +354,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Kaggle Challenges/Mushroom Classification/Mushroom Classification.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="84" lean-forward="true" selection-start-line="84" selection-end-line="84" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Kaggle Challenges/Suicide Rates/Suicide Rates.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="291">
@@ -731,6 +708,9 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Facial Points Recognition Challenge/data/test.csv">
+      <provider selected="true" editor-type-id="LargeFileEditor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/Kaggle Challenges/Face Recognition/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -741,8 +721,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Facial Points Recognition Challenge/data/test.csv">
-      <provider selected="true" editor-type-id="LargeFileEditor" />
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="34">
+            <caret line="2" column="69" selection-start-line="2" selection-start-column="69" selection-end-line="2" selection-end-column="69" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
