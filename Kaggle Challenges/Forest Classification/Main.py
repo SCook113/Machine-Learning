@@ -165,7 +165,7 @@ for bagging_run in range(0, 30):
             pass
         else:
             not_all_same.append(row)
-    print(len(not_all_same), " of ", len(y_test), " were not classified exactly")
+    print(len(not_all_same), " of ", len(y_test), " were not classified correctly")
 
     rows_with_dups = list()
     count_would_correct = 0

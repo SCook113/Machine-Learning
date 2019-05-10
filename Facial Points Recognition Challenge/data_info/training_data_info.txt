@@ -1,0 +1,66 @@
+Info Function:
+
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 7049 entries, 0 to 7048
+Data columns (total 31 columns):
+left_eye_center_x            7039 non-null float64
+left_eye_center_y            7039 non-null float64
+right_eye_center_x           7036 non-null float64
+right_eye_center_y           7036 non-null float64
+left_eye_inner_corner_x      2271 non-null float64
+left_eye_inner_corner_y      2271 non-null float64
+left_eye_outer_corner_x      2267 non-null float64
+left_eye_outer_corner_y      2267 non-null float64
+right_eye_inner_corner_x     2268 non-null float64
+right_eye_inner_corner_y     2268 non-null float64
+right_eye_outer_corner_x     2268 non-null float64
+right_eye_outer_corner_y     2268 non-null float64
+left_eyebrow_inner_end_x     2270 non-null float64
+left_eyebrow_inner_end_y     2270 non-null float64
+left_eyebrow_outer_end_x     2225 non-null float64
+left_eyebrow_outer_end_y     2225 non-null float64
+right_eyebrow_inner_end_x    2270 non-null float64
+right_eyebrow_inner_end_y    2270 non-null float64
+right_eyebrow_outer_end_x    2236 non-null float64
+right_eyebrow_outer_end_y    2236 non-null float64
+nose_tip_x                   7049 non-null float64
+nose_tip_y                   7049 non-null float64
+mouth_left_corner_x          2269 non-null float64
+mouth_left_corner_y          2269 non-null float64
+mouth_right_corner_x         2270 non-null float64
+mouth_right_corner_y         2270 non-null float64
+mouth_center_top_lip_x       2275 non-null float64
+mouth_center_top_lip_y       2275 non-null float64
+mouth_center_bottom_lip_x    7016 non-null float64
+mouth_center_bottom_lip_y    7016 non-null float64
+Image                        7049 non-null object
+dtypes: float64(30), object(1)
+memory usage: 1.7+ MB
+
+
+####################################################################################################
+Columns:
+
+left_eye_center_x, left_eye_center_y, right_eye_center_x, right_eye_center_y, 
+left_eye_inner_corner_x, left_eye_inner_corner_y, left_eye_outer_corner_x, left_eye_outer_corner_y, 
+right_eye_inner_corner_x, right_eye_inner_corner_y, right_eye_outer_corner_x, right_eye_outer_corner_y, 
+left_eyebrow_inner_end_x, left_eyebrow_inner_end_y, left_eyebrow_outer_end_x, left_eyebrow_outer_end_y, 
+right_eyebrow_inner_end_x, right_eyebrow_inner_end_y, right_eyebrow_outer_end_x, right_eyebrow_outer_end_y, 
+nose_tip_x, nose_tip_y, mouth_left_corner_x, mouth_left_corner_y, 
+mouth_right_corner_x, mouth_right_corner_y, mouth_center_top_lip_x, mouth_center_top_lip_y, 
+mouth_center_bottom_lip_x, mouth_center_bottom_lip_y, Image, 
+
+####################################################################################################
+Describe Function:
+
+       left_eye_center_x  left_eye_center_y  right_eye_center_x  right_eye_center_y  left_eye_inner_corner_x  left_eye_inner_corner_y  left_eye_outer_corner_x  left_eye_outer_corner_y  right_eye_inner_corner_x  right_eye_inner_corner_y  right_eye_outer_corner_x  right_eye_outer_corner_y  left_eyebrow_inner_end_x  left_eyebrow_inner_end_y  left_eyebrow_outer_end_x  left_eyebrow_outer_end_y  right_eyebrow_inner_end_x  right_eyebrow_inner_end_y  right_eyebrow_outer_end_x  right_eyebrow_outer_end_y   nose_tip_x   nose_tip_y  mouth_left_corner_x  mouth_left_corner_y  mouth_right_corner_x  mouth_right_corner_y  mouth_center_top_lip_x  mouth_center_top_lip_y  mouth_center_bottom_lip_x  mouth_center_bottom_lip_y
+count        7039.000000        7039.000000         7036.000000         7036.000000              2271.000000              2271.000000              2267.000000              2267.000000               2268.000000               2268.000000               2268.000000               2268.000000               2270.000000               2270.000000               2225.000000               2225.000000                2270.000000                2270.000000                2236.000000                2236.000000  7049.000000  7049.000000          2269.000000          2269.000000           2270.000000           2270.000000             2275.000000             2275.000000                7016.000000                7016.000000
+mean           66.359021          37.651234           30.306102           37.976943                59.159339                37.944752                73.330478                37.707008                 36.652607                 37.989902                 22.384504                 38.033495                 56.068513                 29.332678                 79.482826                 29.734861                  39.322137                  29.502998                  15.871177                  30.428166    48.374186    62.715884            63.285735            75.970714             32.900404             76.179768               47.975412               72.919443                  48.569472                  78.970146
+std             3.448233           3.152926            3.083230            3.033621                 2.690354                 2.307332                 3.405852                 2.881438                  2.350268                  2.311907                  3.057122                  2.910368                  3.485485                  3.078134                  3.986224                  3.773744                   3.209641                   3.106869                   3.622533                   3.865772     4.280038     5.720567             4.079063             4.579724              3.964552              4.417814                3.323060                5.222500                   4.269961                   5.407844
+min            22.763345           1.616512            0.686592            4.091264                19.064954                27.190098                27.571879                26.250023                  5.751046                 26.250023                  3.980117                 25.123828                 17.888717                 15.859361                 32.206432                 10.522325                   6.921014                  16.476000                   3.826243                  13.224453    12.944699    17.932414            22.923362            57.023258              2.245766             56.690208               12.605173               56.719043                  12.536477                  25.850503
+25%            65.082895          35.900451           28.783339           36.327681                58.039339                36.626283                71.716503                36.085523                 35.506126                 36.766783                 20.585808                 36.534382                 54.515587                 27.617244                 77.673916                 27.667948                  37.552286                  27.790607                  13.562183                  28.206046    46.602370    59.292697            61.257143            72.875707             30.797646             73.256472               46.494571               69.396748                  46.573703                  75.549715
+50%            66.497566          37.528055           30.251378           37.813273                59.304615                37.878040                73.247824                37.639015                 36.651562                 37.944075                 22.535954                 37.867071                 56.244975                 29.528872                 79.784229                 29.773813                  39.298848                  29.569347                  15.785709                  30.320160    48.424713    63.451421            63.178286            75.778689             32.982305             76.000592               47.905490               72.605173                  48.594978                  78.696326
+75%            68.024752          39.258449           31.768334           39.566729                60.519810                39.260348                75.015645                39.373489                 37.753571                 39.192917                 24.237701                 39.415051                 57.946415                 31.158830                 81.590720                 31.835621                  40.917160                  31.251664                  17.999040                  32.654768    50.330437    66.492686            65.376243            78.879123             35.101302             78.956357               49.296488               76.221644                  50.677631                  82.233993
+max            94.689280          80.502649           85.039381           81.270911                84.440991                66.562559                95.258090                64.618230                 70.714966                 69.808803                 61.428580                 70.746797                 79.787831                 60.875896                 94.269957                 60.500298                  76.582388                  62.083177                  58.418216                  66.751329    89.438592    95.935644            84.767123            94.673637             74.017993             95.510678               83.989082               94.548359                  89.438592                  95.808983
+
+End of File
