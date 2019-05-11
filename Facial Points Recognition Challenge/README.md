@@ -1,6 +1,8 @@
 ## About this project:
 
-I found this data set on Kaggle, you can find it here: 
+This is a dataset from Kaggle, in which the objective is to identify facial points on images.
+
+Here is the challenge and the dataset: 
 https://www.kaggle.com/c/facial-keypoints-detection/overview
 
 The code is mainly inspired from a Kernel that can be found here:
