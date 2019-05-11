@@ -21,10 +21,10 @@ Run this script to train the model.
 #### show_training_data_predictions.py
 After training you can run this script from the command line and give it an index to see
 what the model predicted on one of the images of the training set.
-This script is extremely slow, I haven't cached the predictions and every time you start it
-the data has to be preprocessed, the model is loaded and the predictions need to be plotted
-on the training images. For now this is good enough for me, maybe in the future I will cache the 
-results if I think I have found a model that is accurat enough.
+Right now it is set to show the predictions of the first model I trained.
+
+#### save_predictions.py
+A script that saves the predictions of a model in a directory as .npy file for further use.
 
 ### TODOS:
 I want to try implement a convolutional neural network similar to the architecture described here:
