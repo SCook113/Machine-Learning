@@ -6,7 +6,7 @@ I downloaded lots of pictures of shoes and photography not containing shoes from
 After that I trained a convolutional neural network using data augmentation.
 I trained the network on 4927 pictures (with roughly half being pictures of shoes) and validated the model on 542 pictures while training (also half-half).
 
-You can test the model on you own pictures by placing them in the directory "data/test/shoe" (pictures containing shoes) and "data/test/no_shoe" and running the "Make Predictions Notebook".
+You can test the model on your own pictures by placing them in the directory "data/test/shoe" (pictures containing shoes) and "data/test/no_shoe" and running the "Make Predictions" Notebook.
 
 The fully trained model is the "model.h5" file.
 
