@@ -1,2 +1,0 @@
-Add regularization
-Implement 'save_best' when training
