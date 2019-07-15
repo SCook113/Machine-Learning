@@ -3,4 +3,6 @@ Image Classification/data/
 Image Classification/images_backup/
 "Facial Points Recognition Challenge"/
 "Facial Points Recognition Challenge"/predictions_model_fully_trained/
-Facial Points Recognition Challenge/
+Facial Points Recognition Challenge/data/*
+Building Recommendation System/data/
+"Facial Points Recognition"/data/
